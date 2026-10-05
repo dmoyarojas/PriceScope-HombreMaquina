@@ -1,0 +1,219 @@
+/* ═══════════════════════════════════════════════════
+   PriceScope — styles-auth.css
+   Paleta: #111844 · #4B5694 · #7288AE · #EAE0CF
+   Requiere: styles-base.css
+═══════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════
+   AUTH
+═══════════════════════════════════════ */
+.auth-page {
+  min-height: calc(100vh - 140px);
+  background: var(--white);
+}
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 140px);
+}
+
+/* ═══════════════════════════════════════
+   PANEL IZQUIERDO
+═══════════════════════════════════════ */
+.auth-side {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--bg-hero-top), var(--bg-hero));
+  padding: 80px;
+  color: var(--white);
+}
+.auth-side::before {
+  content: '';
+  position: absolute;
+  width: 450px; height: 450px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  top: -120px; left: -120px;
+}
+.auth-side::after {
+  content: '';
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  bottom: -100px; right: -80px;
+}
+
+/* glow sutil igual que el resto de heros */
+.auth-side__glow {
+  position: absolute;
+  top: 10%; right: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(114,136,174,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.auth-side__content {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  margin-top: 140px;
+}
+.auth-side__content h1 {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 3rem;
+}
+
+.auth-benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.auth-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: var(--text-white80);
+}
+.benefit-icon {
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   FORMULARIO
+═══════════════════════════════════════ */
+.auth-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background: var(--white);
+}
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+}
+.auth-card h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+.auth-card p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.field { margin-bottom: 1.25rem; }
+.field label {
+  display: block;
+  margin-bottom: 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.field input {
+  width: 100%;
+  height: 58px;
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 0 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--slate);
+  box-shadow: 0 0 0 4px rgba(114,136,174,0.12);
+}
+.field input::placeholder { color: #94a3b8; }
+
+.auth-btn {
+  width: 100%;
+  height: 58px;
+  margin-top: 0.75rem;
+  border: none;
+  border-radius: 18px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.18s;
+  box-shadow: 0 4px 14px rgba(17,24,68,0.22);
+}
+.auth-btn:hover {
+  background: var(--indigo);
+  transform: translateY(-1px);
+}
+
+.auth-bottom {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.auth-bottom a {
+  color: var(--indigo);
+  font-weight: 700;
+  transition: color 0.18s;
+}
+.auth-bottom a:hover { color: var(--navy); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 992px) {
+  .auth-layout      { grid-template-columns: 1fr; }
+  .auth-side        { display: none; }
+  .auth-form-side   { padding: 2rem 1.5rem; }
+}
+@media (max-width: 480px) {
+  .auth-card h2     { font-size: 1.8rem; }
+  .field input      { height: 52px; }
+  .auth-btn         { height: 52px; }
+}
+
+/* ══════════════════════════════════════════════
+   INPUT CON OJO (mostrar/ocultar contraseña)
+══════════════════════════════════════════════ */
+.input-eye-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-eye-wrap input {
+  width: 100%;
+  padding-right: 2.75rem;
+}
+.btn-eye {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.18s;
+}
+.btn-eye:hover { color: var(--indigo); }

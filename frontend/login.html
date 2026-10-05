@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PriceScope — Compara precios al instante</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles-base.css" />
+    <link rel="stylesheet" href="styles-auth.css" />
+</head>
+
+<body>
+
+    <!-- ══════════ NAVBAR ══════════ -->
+    <header class="navbar">
+        <div class="container navbar__inner">
+            <a href="index.html" class="navbar__logo">
+                <div class="logo-icon">
+                    <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                </div>
+                PriceScope
+            </a>
+            <nav class="navbar__nav">
+                <a href="index.html" class="navbar__nav-link">Inicio</a>
+                <a href="plataformas.html" class="navbar__nav-link">Plataformas</a>
+                <a href="catalogo.html" class="navbar__nav-link">Catálogo</a>
+                <a href="sobre-nosotros.html" class="navbar__nav-link">Sobre nosotros</a>
+                <a href="contacto.html" class="navbar__nav-link">Contacto</a>
+                <a href="mis-alertas.html" id="navAlertas" class="navbar__nav-link" style="display:none">Mis Alertas</a>
+            </nav>
+            <div class="navbar__auth">
+
+                <!-- Usuario NO autenticado -->
+                <div id="authGuest">
+
+                    <a href="login.html" class="btn-login">
+
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+
+                        </svg>
+
+                        Iniciar sesión
+
+                    </a>
+
+                </div>
+
+                <!-- Usuario autenticado -->
+                <div id="authUser" style="display:none">
+
+                    <span class="auth-nombre" id="authNombre"></span>
+
+                    <button class="btn-logout" onclick="cerrarSesion()">
+                        Salir
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-page">
+
+        <section class="auth-layout">
+
+            <!-- PANEL IZQUIERDO -->
+            <div class="auth-side">
+
+                <div class="auth-side__content">
+
+                    <h1>
+                        Compra inteligente.
+                        <br>
+                        Paga menos.
+                    </h1>
+
+                    <ul class="auth-benefits">
+
+                        <li>
+                            <span class="benefit-icon">🛡️</span>
+                            Comparación segura en múltiples tiendas
+                        </li>
+
+                        <li>
+                            <span class="benefit-icon">⚡</span>
+                            Alertas de precio en tiempo real
+                        </li>
+
+                        <li>
+                            <span class="benefit-icon">🔔</span>
+                            Notificaciones cuando baje el precio
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <!-- PANEL DERECHO -->
+            <div class="auth-form-side">
+
+                <div class="auth-card">
+
+    <!-- FORM LOGIN -->
+    <div id="formLogin">
+        <div class="field">
+            <label>Correo electrónico</label>
+            <input type="email" id="loginCorreo" placeholder="tu@correo.com">
+        </div>
+        <div class="field">
+            <label>Contraseña</label>
+            <div class="input-eye-wrap">
+                <input type="password" id="loginPassword" placeholder="••••••••">
+                <button type="button" class="btn-eye" onclick="toggleEye('loginPassword',this)" tabindex="-1">
+                    <svg class="eye-show" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="eye-hide" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+            </div>
+        </div>
+        <p id="loginError" style="color:red;font-size:13px;margin:0 0 8px"></p>
+        <button type="button" class="auth-btn login-submit" onclick="hacerLogin()">
+            Iniciar sesión
+        </button>
+        <p style="text-align:center;margin-top:12px;font-size:13px;color:#64748b">
+            <a href="#" onclick="mostrarRecuperacion();return false" 
+               style="color:#1e40af;font-weight:600">
+               ¿Olvidaste tu contraseña?
+            </a>
+        </p>
+    </div>
+
+    <!-- FORM REGISTRO -->
+    <div id="formRegistro" style="display:none">
+
+        <!-- PASO 1: datos -->
+        <div id="regFormPrincipal">
+            <div class="field">
+                <label>Nombre completo</label>
+                <input type="text" id="regNombre" placeholder="Juan Pérez">
+            </div>
+            <div class="field">
+                <label>Correo electrónico</label>
+                <input type="email" id="regCorreo" placeholder="tu@correo.com">
+            </div>
+            <div class="field">
+                <label>Contraseña</label>
+                <div class="input-eye-wrap">
+                    <input type="password" id="regPassword" placeholder="Mínimo 6 caracteres">
+                    <button type="button" class="btn-eye" onclick="toggleEye('regPassword',this)" tabindex="-1">
+                        <svg class="eye-show" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-hide" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="field">
+                <label>Confirmar contraseña</label>
+                <div class="input-eye-wrap">
+                    <input type="password" id="regPasswordConfirm" placeholder="Repite tu contraseña">
+                    <button type="button" class="btn-eye" onclick="toggleEye('regPasswordConfirm',this)" tabindex="-1">
+                        <svg class="eye-show" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-hide" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    </button>
+                </div>
+            </div>
+            <p id="registroError" style="color:red;font-size:13px;margin:0 0 8px"></p>
+            <button type="button" class="auth-btn login-submit" onclick="hacerRegistro()">
+                Crear cuenta
+            </button>
+        </div>
+
+        <!-- PASO 2: código -->
+        <div id="regFormCodigo" style="display:none">
+            <input type="hidden" id="regCorreoOculto">
+            <p style="margin-bottom:16px;color:#374151">
+                Ingresa el código de 4 dígitos que enviamos a tu correo.
+            </p>
+            <div class="field">
+                <label>Código de verificación</label>
+                <input type="text" id="regCodigo" maxlength="4" placeholder="0000"
+                    style="letter-spacing:8px;font-size:24px;text-align:center">
+            </div>
+            <button type="button" class="auth-btn login-submit" id="btnVerificarCodigo" onclick="verificarCodigo()">
+                Confirmar código
+            </button>
+            <button type="button" class="auth-btn" id="btnReenviarOTP"
+                style="background:transparent;color:#1e40af;margin-top:8px;font-weight:600"
+                onclick="reenviarCodigoRegistro()">
+                Reenviar código
+            </button>
+            <button type="button" class="auth-btn"
+                style="background:transparent;color:#64748b;margin-top:4px" onclick="volverARegistro()">
+                ← Volver
+            </button>
+        </div>
+
+    </div>
+
+    <div class="auth-bottom" id="authBottomText">
+    ¿No tienes cuenta?
+    <a href="#" id="authBottomLink" onclick="switchTab('registro');return false">Regístrate gratis</a>
+</div>
+
+</div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="footer">
+        <div class="container footer__inner">
+
+            <div class="footer__brand-col">
+                <a href="#" class="footer__logo">
+                    <div class="logo-icon logo-icon--sm">
+                        <svg width="13" height="13" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.35-4.35" />
+                        </svg>
+                    </div>
+                    PriceScope
+                </a>
+                <p class="footer__tagline">Tú pones el precio.</p>
+            </div>
+
+            <div class="footer__links-col">
+                <p class="footer__links-title">Explorar</p>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="plataformas.html">Plataformas</a>
+            </div>
+
+            <div class="footer__links-col">
+                <p class="footer__links-title">Compañía</p>
+                <a href="sobre-nosotros.html">Sobre nosotros</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+
+        </div>
+        <div class="footer__bottom">
+            <div class="container footer__bottom-inner">
+                <span>© 2026 PriceScope. Todos los derechos reservados.</span>
+                <span>Hecho para compradores inteligentes en Perú.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

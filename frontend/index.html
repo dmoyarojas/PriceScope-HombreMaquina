@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PriceScope — Compara precios al instante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles-base.css" />
+  <link rel="stylesheet" href="styles-index.css" />
+</head>
+
+<body>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo">
+        <div class="logo-icon">
+          <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </div>
+        PriceScope
+      </a>
+      <nav class="navbar__nav">
+        <a href="#" class="navbar__nav-link navbar__nav-link--active">Inicio</a>
+        <a href="plataformas.html" class="navbar__nav-link">Plataformas</a>
+        <a href="catalogo.html" class="navbar__nav-link">Catálogo</a>
+        <a href="sobre-nosotros.html" class="navbar__nav-link">Sobre nosotros</a>
+        <a href="contacto.html" class="navbar__nav-link">Contacto</a>
+        <a href="mis-alertas.html" id="navAlertas" class="navbar__nav-link" style="display:none">Mis Alertas</a>
+      </nav>
+      <div class="navbar__auth">
+
+        <!-- Usuario NO autenticado -->
+        <div id="authGuest">
+
+          <a href="login.html" class="btn-login">
+
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+
+            </svg>
+
+            Iniciar sesión
+
+          </a>
+
+        </div>
+
+        <!-- Usuario autenticado -->
+        <div id="authUser" style="display:none">
+
+          <span class="auth-nombre" id="authNombre"></span>
+
+          <button class="btn-logout" onclick="cerrarSesion()">
+            Salir
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero" id="hero">
+    <div class="container hero__inner">
+
+      <div class="hero__content">
+        <span class="hero__tag">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          Comparador inteligente · Perú
+        </span>
+        <h1 class="hero__title">
+          Encuentra el mejor precio<br>
+          <em>en un solo lugar.</em>
+        </h1>
+        <p class="hero__desc">
+          Compara precios en tiempo real entre Hiraoka, Falabella, Plaza Vea y más. Crea alertas, revisa el
+          historial y compra siempre al mejor precio.
+        </p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-num">+50K</span>
+            <span class="hero__stat-lbl">Productos</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">9</span>
+            <span class="hero__stat-lbl">Tiendas</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">24/7</span>
+            <span class="hero__stat-lbl">Monitoreo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decoración derecha: cards flotantes -->
+      <div class="hero__deco">
+        <!-- Card producto principal -->
+        <div class="deco-card deco-card--product">
+          <div class="deco-product__img">
+            <img src="https://images.unsplash.com/photo-1678685888221-cda773a3dcdb?w=60&h=60&fit=crop&q=80"
+              alt="iPhone 15 Pro" onerror="this.style.display='none'" />
+          </div>
+          <div class="deco-product__info">
+            <span class="deco-product__brand">Apple</span>
+            <span class="deco-product__name">iPhone 15 Pro 256GB</span>
+          </div>
+          <div class="deco-product__price">
+            <span class="deco-product__amount">S/ 4,299</span>
+            <span class="deco-product__badge">-12%</span>
+          </div>
+        </div>
+
+        <!-- Card historial -->
+        <div class="deco-card deco-card--chart">
+          <div class="deco-chart__header">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            <span>Historial · 30 días</span>
+          </div>
+          <svg class="deco-chart__svg" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="0,50 30,45 60,48 90,35 120,30 150,38 180,22 200,25" stroke="#1d4ed8" stroke-width="2.5"
+              fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            <polyline points="0,50 30,45 60,48 90,35 120,30 150,38 180,22 200,25 200,60 0,60"
+              fill="rgba(29,78,216,0.08)" />
+          </svg>
+          <div class="deco-chart__footer">
+            <svg width="12" height="12" fill="none" stroke="#15803d" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="7 13 12 18 17 13" />
+              <polyline points="7 6 12 11 17 6" />
+            </svg>
+            <span>Bajó S/ 600 esta semana</span>
+          </div>
+        </div>
+
+        <!-- Card alerta -->
+        <div class="deco-card deco-card--alert">
+          <div class="deco-alert__icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+          </div>
+          <div class="deco-alert__info">
+            <span class="deco-alert__title">Alerta activa</span>
+            <span class="deco-alert__product">RTX 4070 Super</span>
+            <span class="deco-alert__desc">Te avisamos cuando baje de <strong>S/ 2,500</strong>.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ FEATURES ══════════ -->
+  <section class="features">
+    <div class="container features__grid">
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+        </div>
+        <h3 class="feature-card__title">Comparación en tiempo real</h3>
+        <p class="feature-card__desc">Vemos los precios actualizados al instante en todas las plataformas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+        </div>
+        <h3 class="feature-card__title">Historial de precios</h3>
+        <p class="feature-card__desc">Sabe si es momento de comprar con datos de hasta 6 meses.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <h3 class="feature-card__title">Alertas confiables</h3>
+        <p class="feature-card__desc">Define tu precio objetivo y te avisamos al instante.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ BANNER CATÁLOGO ══════════ -->
+  <section class="catalogo-banner" id="catalogo">
+    <div class="container">
+      <div class="catalogo-banner__inner">
+
+        <!-- Lado izquierdo: texto y CTA -->
+        <div class="catalogo-banner__content">
+          <div class="section-label">Catálogo completo</div>
+          <h2 class="catalogo-banner__title">
+            +50,000 productos<br>
+            <em>comparados en tiempo real</em>
+          </h2>
+          <p class="catalogo-banner__desc">
+            Explora nuestro catálogo con celulares, televisores, hardware PC y más.
+            Filtra por precio, marca y tienda. Crea tu alerta en segundos.
+          </p>
+
+          <div class="catalogo-banner__cats">
+            <a href="catalogo.html?cat=celulares" class="cat-pill">📱 Celulares</a>
+            <a href="catalogo.html?cat=televisores" class="cat-pill">📺 Televisores</a>
+            <a href="catalogo.html?cat=hardware" class="cat-pill">🖥️ Hardware PC</a>
+          </div>
+
+          <a href="catalogo.html" class="btn-catalogo-ir" id="btnIrCatalogo">
+            Ver catálogo completo
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Lado derecho: tarjetas flotantes de muestra -->
+        <div class="catalogo-banner__visual">
+          <div class="cban-card">
+            <div class="cban-card__img pimg--cel"></div>
+            <div class="cban-card__info">
+              <span class="cban-card__brand">Apple</span>
+              <p class="cban-card__name">iPhone 15 Pro 256GB</p>
+              <p class="cban-card__price">S/ 4,299 <span class="cban-card__old">S/ 4,899</span></p>
+            </div>
+            <span class="cban-card__badge">-12%</span>
+          </div>
+          <div class="cban-card cban-card--mid">
+            <div class="cban-card__img pimg--tv"></div>
+            <div class="cban-card__info">
+              <span class="cban-card__brand">LG</span>
+              <p class="cban-card__name">OLED C3 55"</p>
+              <p class="cban-card__price">S/ 5,299 <span class="cban-card__old">S/ 6,499</span></p>
+            </div>
+            <span class="cban-card__badge">-18%</span>
+          </div>
+          <div class="cban-card cban-card--bottom">
+            <div class="cban-card__img pimg--cel2"></div>
+            <div class="cban-card__info">
+              <span class="cban-card__brand">Samsung</span>
+              <p class="cban-card__name">Galaxy S24 Ultra</p>
+              <p class="cban-card__price">S/ 3,899 <span class="cban-card__old">S/ 4,299</span></p>
+            </div>
+            <span class="cban-card__badge">-9%</span>
+          </div>
+
+          <!-- Badge de tiendas -->
+          <div class="cban-stores">
+            <span>9 tiendas</span>
+            <div class="cban-stores__dots">
+              <span class="store-dot" style="background:#e53e3e">Hi</span>
+              <span class="store-dot" style="background:#2d8f4e">Fa</span>
+              <span class="store-dot" style="background:#1a56db">LC</span>
+              <span class="store-dot" style="background:#d97706">PV</span>
+              <span class="store-dot" style="background:#6d28d9">Wi</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PLATAFORMAS / INTEGRACIONES ══════════ -->
+  <section class="plataformas" id="plataformas">
+    <div class="container plataformas__inner">
+
+      <div class="plataformas__text">
+        <div class="section-label">Integraciones</div>
+        <h2 class="section-title">Conectado con las plataformas que ya usas</h2>
+        <p class="section-desc">
+          Centralizamos información de los marketplaces más grandes para que tú no tengas que abrir diez pestañas. Una
+          sola búsqueda, todos los precios.
+        </p>
+        <ul class="plataformas__checks">
+          <li>
+            <svg width="16" height="16" fill="none" stroke="#15803d" stroke-width="2.5" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            9 tiendas de tecnología en Perú
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" stroke="#15803d" stroke-width="2.5" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Datos obtenidos directamente de cada tienda
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" stroke="#15803d" stroke-width="2.5" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Actualización periódica automática
+          </li>
+        </ul>
+        <a href="plataformas.html" class="btn-plataformas">
+          Ver plataformas
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="plataformas__grid">
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--hiraoka">Hi</div>
+          <span class="plat-tile__name">Hiraoka</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--falabella">Fa</div>
+          <span class="plat-tile__name">Falabella</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--lacuracao">LC</div>
+          <span class="plat-tile__name">La Curaçao</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--plazavea">PV</div>
+          <span class="plat-tile__name">Plaza Vea</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--wilson">Wi</div>
+          <span class="plat-tile__name">Wilson</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--impacto">Im</div>
+          <span class="plat-tile__name">Impacto</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--cyc">CC</div>
+          <span class="plat-tile__name">C&amp;C Computer</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--compuvision">CV</div>
+          <span class="plat-tile__name">CompuVision</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+        <div class="plat-tile">
+          <div class="plat-tile__logo plat-logo--sercoplus">Sc</div>
+          <span class="plat-tile__name">Sercoplus</span>
+          <span class="plat-tile__status">Activa</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ ALERTAS CTA ══════════ -->
+  <section class="alertas-cta">
+    <div class="container">
+      <div class="alertas-cta__inner">
+
+        <div class="alertas-cta__text">
+          <span class="alertas-cta__tag">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            Sistema de alertas
+          </span>
+          <h2 class="alertas-cta__title">Tú pones el precio.<br>Nosotros lo encontramos.</h2>
+          <p class="alertas-cta__desc">Crea alertas con precio exacto o rango. Recibe una notificación apenas tu
+            producto entre en el precio que quieres pagar.</p>
+          <a href="catalogo.html" class="alertas-cta__btn">
+            Crear mi primera alerta
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="alertas-cta__list">
+          <div class="alertas-cta__item">
+            <div class="alertas-cta__item-img pimg--cel"></div>
+            <div class="alertas-cta__item-info">
+              <span class="alertas-cta__item-name">iPhone 15 Pro 256GB</span>
+              <span class="alertas-cta__item-obj">Objetivo: S/ 3869</span>
+            </div>
+            <span class="alertas-cta__item-badge">Activa</span>
+          </div>
+          <div class="alertas-cta__item">
+            <div class="alertas-cta__item-img pimg--cel2"></div>
+            <div class="alertas-cta__item-info">
+              <span class="alertas-cta__item-name">Samsung Galaxy S24 Ultra</span>
+              <span class="alertas-cta__item-obj">Objetivo: S/ 3509</span>
+            </div>
+            <span class="alertas-cta__item-badge">Activa</span>
+          </div>
+          <div class="alertas-cta__item">
+            <div class="alertas-cta__item-img pimg--tv"></div>
+            <div class="alertas-cta__item-info">
+              <span class="alertas-cta__item-name">LG OLED C3 55"</span>
+              <span class="alertas-cta__item-obj">Objetivo: S/ 4769</span>
+            </div>
+            <span class="alertas-cta__item-badge">Activa</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <div class="footer__brand-col">
+        <a href="#" class="footer__logo">
+          <div class="logo-icon logo-icon--sm">
+            <svg width="13" height="13" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </div>
+          PriceScope
+        </a>
+        <p class="footer__tagline">Tú pones el precio.</p>
+      </div>
+
+      <div class="footer__links-col">
+        <p class="footer__links-title">Explorar</p>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="plataformas.html">Plataformas</a>
+      </div>
+
+      <div class="footer__links-col">
+        <p class="footer__links-title">Compañía</p>
+        <a href="sobre-nosotros.html">Sobre nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <span>© 2026 PriceScope. Todos los derechos reservados.</span>
+        <span>Hecho para compradores inteligentes en Perú.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>

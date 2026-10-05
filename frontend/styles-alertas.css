@@ -1,0 +1,448 @@
+/* ═══════════════════════════════════════════════════
+   PriceScope — styles-alertas.css
+   Paleta: #111844 · #4B5694 · #7288AE · #EAE0CF
+   Requiere: styles-base.css
+═══════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.alerts-hero {
+  background: linear-gradient(160deg, var(--bg-hero-top), var(--bg-hero));
+  padding: 4rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.alerts-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+.alerts-hero__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.alerts-hero h1 {
+  color: var(--white);
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+}
+.alerts-hero p {
+  max-width: 500px;
+  color: var(--text-white80);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* BOTÓN NUEVA ALERTA */
+.btn-new-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 150px;
+  height: 48px;
+  background: var(--cream);
+  color: var(--navy);
+  border: none;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-new-alert:hover {
+  background: var(--cream-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(17,24,68,0.18);
+}
+
+
+/* ═══════════════════════════════════════
+   LISTADO ALERTAS
+═══════════════════════════════════════ */
+.alerts-section {
+  background: var(--bg-cream);
+  padding: 3rem 0 5rem;
+}
+
+/* CARD */
+.alert-card {
+  background: var(--white);
+  border: 1.5px solid var(--border-light);
+  border-radius: 26px;
+  min-height: 128px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+}
+.alert-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--blue-300);
+  transform: translateY(-2px);
+}
+.alert-card--success {
+  border: 2px solid #22c55e;
+  background: #fafffe;
+}
+
+
+/* ═══════════════════════════════════════
+   PRODUCTO
+═══════════════════════════════════════ */
+.alert-product {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.alert-product img {
+  width: 82px; height: 82px;
+  object-fit: cover;
+  border-radius: 18px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--border-light);
+}
+.alert-product-info {
+  min-height: 82px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.alert-brand {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+.alert-product-info h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.alert-product-info p {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.92rem;
+}
+.alert-product-info strong {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+
+/* ═══════════════════════════════════════
+   ESTADOS
+═══════════════════════════════════════ */
+.alert-status {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.alert-status--success    { color: #16a34a; }
+.alert-status--empty      { visibility: hidden; }
+.alert-status--monitoring { color: #64748b; font-weight: 500; }
+
+/* Punto pulsante para estado monitoreando */
+.alert-status--monitoring::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+  animation: pulse-dot 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+
+/* Precio actual en alerta activa */
+.alert-product-info .alert-precio-actual {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.alert-product-info .alert-precio-actual strong {
+  color: var(--navy);
+  font-weight: 800;
+  font-size: 1rem;
+}
+.alert-product-info .alert-precio-sin-dato {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+
+/* ═══════════════════════════════════════
+   ACCIONES
+═══════════════════════════════════════ */
+.alert-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* OBJETIVO */
+.alert-target {
+  min-width: 130px;
+  text-align: right;
+}
+.alert-target span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-bottom: 2px;
+}
+.alert-target strong {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+
+/* ═══════════════════════════════════════
+   BADGES
+═══════════════════════════════════════ */
+.badge-success,
+.badge-active {
+  min-width: 95px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.badge-success { background: #16a34a; color: var(--white); }
+.badge-active  { background: #dcfce7; color: #15803d; }
+
+
+/* ═══════════════════════════════════════
+   DURACIÓN DE ALERTA
+═══════════════════════════════════════ */
+.alert-duracion {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+}
+.alert-duracion--warning {
+  color: #b45309;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+.alert-duracion--expired {
+  color: #dc2626;
+  background: #fee2e2;
+  border-color: #fecaca;
+}
+.alert-card--expired {
+  opacity: 0.72;
+  border-color: #fca5a5;
+}
+
+/* ═══════════════════════════════════════
+   BOTONES
+═══════════════════════════════════════ */
+.btn-delete {
+  width: 40px; height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #dc2626;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background 0.18s, transform 0.18s;
+}
+.btn-delete:hover { background: #fecaca; transform: scale(1.08); }
+
+/* Botón Editar */
+.btn-edit {
+  width: 40px; height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  transition: background 0.18s, transform 0.18s;
+  border: 1px solid #bfdbfe;
+}
+.btn-edit:hover { background: #dbeafe; transform: scale(1.08); }
+
+.btn-view,
+.btn-go-success {
+  min-width: 72px; height: 40px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 18px;
+  color: var(--white);
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, transform 0.18s;
+}
+.btn-view       { background: var(--navy); }
+.btn-go-success { background: #16a34a; }
+.btn-view:hover       { background: var(--indigo); transform: translateY(-2px); }
+.btn-go-success:hover { filter: brightness(1.08); transform: translateY(-2px); }
+
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 992px) {
+  .alerts-hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .alert-card {
+    min-height: auto;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .alert-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .alert-target { text-align: left; }
+}
+@media (max-width: 768px) {
+  .alerts-hero        { padding: 3rem 0; }
+  .alerts-hero h1     { font-size: 2.3rem; }
+  .alerts-hero p      { font-size: 0.95rem; }
+  .btn-new-alert      { width: 100%; }
+  .alert-product      { flex-direction: column; align-items: flex-start; }
+  .alert-product img  { width: 72px; height: 72px; }
+}/* ---------------------------------------
+   TABS DE ALERTAS
+--------------------------------------- */
+.alerts-tabs-section {
+  background: var(--bg-cream);
+  padding: 2rem 0 0;
+}
+.alerts-tabs {
+  display: inline-flex;
+  gap: 0.5rem;
+  background: #f1f5f9;
+  padding: 6px;
+  border-radius: 20px;
+}
+.alerts-tab {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.alerts-tab:hover {
+  color: var(--navy);
+}
+.alerts-tab.active {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.alerts-tab span {
+  background: #e2e8f0;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.alerts-tab.active span {
+  background: #f1f5f9;
+}
+
+.badge-expired {
+  min-width: 95px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.btn-renew {
+  min-width: 100px;
+  height: 40px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 18px;
+  color: var(--white);
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, transform 0.18s;
+  background: var(--navy);
+  gap: 6px;
+}
+.btn-renew:hover {
+  background: var(--indigo);
+  transform: translateY(-2px);
+}

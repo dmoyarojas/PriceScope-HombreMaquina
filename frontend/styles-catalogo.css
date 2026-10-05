@@ -1,0 +1,252 @@
+/* ═══════════════════════════════════════════════════
+   PriceScope — styles-catalogo.css
+   Exclusivo de catalogo.html
+   Paleta: #111844 · #4B5694 · #7288AE · #EAE0CF
+   Requiere: styles-base.css
+═══════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════
+   HERO DEL CATÁLOGO
+══════════════════════════════════════════════ */
+.cat-hero {
+  background: linear-gradient(160deg, var(--bg-hero-top) 0%, var(--bg-hero) 100%);
+  padding: 3.5rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.cat-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+.cat-hero::after {
+  content: '';
+  position: absolute;
+  top: -30%; right: 5%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(114,136,174,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cat-hero__inner { position: relative; z-index: 1; }
+
+.cat-hero__title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.4rem;
+}
+.cat-hero__sub {
+  font-size: 0.97rem;
+  color: var(--text-white80);
+  margin-bottom: 1.75rem;
+}
+.cat-hero__search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--white);
+  border-radius: var(--radius-full);
+  padding: 0.6rem 0.6rem 0.6rem 1.25rem;
+  max-width: 520px;
+  box-shadow: 0 4px 24px rgba(17,24,68,0.22);
+}
+.cat-hero__search svg { flex-shrink: 0; color: var(--slate); }
+.cat-hero__search-input {
+  flex: 1;
+  border: none; outline: none; background: none;
+  font-size: 0.97rem; font-family: inherit; color: var(--text-dark);
+}
+.cat-hero__search-input::placeholder { color: #94a3b8; }
+
+
+/* ══════════════════════════════════════════════
+   LAYOUT PRINCIPAL
+══════════════════════════════════════════════ */
+.cat-body {
+  background: var(--bg-cream);
+  min-height: 70vh;
+  padding: 2.5rem 0 5rem;
+}
+.cat-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+
+/* ══════════════════════════════════════════════
+   PANEL DE FILTROS
+══════════════════════════════════════════════ */
+.filters-panel {
+  background: var(--white);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  position: sticky;
+  top: 80px;
+  box-shadow: var(--shadow-sm);
+}
+.filters-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.filter-group { margin-bottom: 1.5rem; }
+.filter-group:last-child { margin-bottom: 0; }
+
+.filter-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+/* Botones de categoría */
+.filter-cats { display: flex; flex-direction: column; gap: 0.3rem; }
+.filter-cat-btn {
+  width: 100%;
+  background: none; border: none;
+  text-align: left;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+.filter-cat-btn:hover  { background: var(--blue-50); color: var(--indigo); }
+.filter-cat-btn.active { background: var(--navy); color: var(--white); font-weight: 700; }
+
+/* Select marca */
+.filter-select {
+  width: 100%;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.88rem; font-family: inherit; color: var(--text-dark);
+  outline: none; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.filter-select:focus { border-color: var(--slate); }
+
+/* Slider de precio */
+.filter-slider-wrap { padding: 0.25rem 0; }
+.filter-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--navy) 0%,
+    var(--navy) var(--val, 100%),
+    var(--border) var(--val, 100%)
+  );
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 0.6rem;
+}
+.filter-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2.5px solid var(--white);
+  box-shadow: 0 1px 6px rgba(17,24,68,0.25);
+  cursor: pointer;
+}
+.filter-slider::-moz-range-thumb {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2.5px solid var(--white);
+  box-shadow: 0 1px 6px rgba(17,24,68,0.25);
+  cursor: pointer;
+}
+.filter-price-range {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+}
+.filter-price-range span:last-child { font-weight: 700; color: var(--text-body); }
+
+
+/* ══════════════════════════════════════════════
+   ÁREA DE RESULTADOS
+══════════════════════════════════════════════ */
+.cat-results { min-width: 0; }
+
+.cat-results__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.cat-results__count {
+  font-size: 0.9rem; font-weight: 600; color: var(--text-muted);
+}
+.cat-results__count strong { color: var(--text-dark); }
+
+.cat-sort {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem; font-family: inherit; color: var(--text-body); font-weight: 500;
+  outline: none; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.cat-sort:focus { border-color: var(--slate); }
+
+/* Grid 3 columnas */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.cat-grid .pcard__img-wrap { height: 220px; }
+
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE CATÁLOGO
+══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .cat-layout { grid-template-columns: 200px 1fr; }
+  .cat-grid   { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .cat-layout    { grid-template-columns: 1fr; }
+  .filters-panel { position: static; }
+  .cat-grid      { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .cat-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════
+   GRADIENTES EXTRA DE PRODUCTO
+══════════════════════════════════════════════ */
+.pimg--hw2 {
+  background: linear-gradient(135deg, #1a0533 0%, #4a1580 40%, #2d0a5e 100%);
+}
+.pimg--cel3 {
+  background: linear-gradient(135deg, #0a2a1a 0%, #0d4f2e 40%, #0a3520 100%);
+}
+.pimg--tv3 {
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a35 40%, #0a0a20 100%);
+}
